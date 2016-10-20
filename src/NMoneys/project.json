@@ -1,0 +1,25 @@
+{
+  "name" : "NMoneys",
+  "title" : "nMoneys",
+  "version": "5.0.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "compile" : {
+      "exclude" :["*.notPortable.cs", "**/DataContractSurrogate.cs", "*.Serialization.cs"],
+      "include" :[]
+    }
+  },
+  "dependencies": {
+    "System.Runtime.Serialization.Primitives" : "4.1.1",
+    "System.Diagnostics.Contracts" : "4.0.1",
+    "System.Xml.XPath" : "4.0.1",
+    "System.Xml.XmlSerializer" : "4.0.11"
+  },
+  "frameworks": {
+    "netstandard1.6": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
+    }
+  }
+}
