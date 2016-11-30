@@ -3,6 +3,8 @@ using System.Globalization;
 using System.Xml.Serialization;
 using NMoneys.Support;
 using NMoneys.Support.Ext;
+using System.Reflection;
+using System.Collections.Generic;
 
 namespace NMoneys
 {
@@ -163,7 +165,7 @@ namespace NMoneys
 			IsObsolete = isObsolete;
 			Entity = entity;
 
-			FormatInfo = NumberFormatInfo.ReadOnly(new NumberFormatInfo
+			FormatInfo = new NumberFormatInfo
 			{
 				CurrencySymbol = symbol,
 				CurrencyDecimalDigits = significantDecimalDigits,
@@ -177,19 +179,40 @@ namespace NMoneys
 				NumberGroupSeparator = groupSeparator,
 				NumberGroupSizes = groupSizes,
 				NumberNegativePattern = negativePattern.TranslateNegativePattern(),
-			});
+			};
 		}
 
-		#endregion
+        #endregion
 
-		#region static shortcuts & cache initialization
+        #region FormatInfo
 
-		// random list of static accessors based on currency exchange most used currencies
+        public void UpdateFormatInfoProperty(string propertyName, object propertyValue, Type formatInfoType = null)
+        {
+            formatInfoType = formatInfoType == null ? typeof(NumberFormatInfo) : formatInfoType;
+            PropertyInfo myPropInfo = formatInfoType.GetProperty(propertyName);
+            myPropInfo.SetValue(FormatInfo, propertyValue, null);
+        }
 
-		/// <summary>
-		/// Australia Dollars
-		/// </summary>
-		public static readonly Currency Aud;
+        public void UpdateFormatInfoProperties(Dictionary<string, object> properties)
+        {
+            Type formatInfoType = typeof(NumberFormatInfo);
+
+            foreach (KeyValuePair<string, object> property in properties)
+            {
+                UpdateFormatInfoProperty(property.Key, property.Value, formatInfoType);
+            }
+        }
+
+        #endregion
+
+        #region static shortcuts & cache initialization
+
+        // random list of static accessors based on currency exchange most used currencies
+
+        /// <summary>
+        /// Australia Dollars
+        /// </summary>
+        public static readonly Currency Aud;
 		/// <summary>
 		/// Candada Dollars
 		/// </summary>
