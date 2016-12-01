@@ -163,7 +163,7 @@ namespace NMoneys
 			IsObsolete = isObsolete;
 			Entity = entity;
 
-			FormatInfo = NumberFormatInfo.ReadOnly(new NumberFormatInfo
+			var formatInfo = new NumberFormatInfo
 			{
 				CurrencySymbol = symbol,
 				CurrencyDecimalDigits = significantDecimalDigits,
@@ -177,7 +177,9 @@ namespace NMoneys
 				NumberGroupSeparator = groupSeparator,
 				NumberGroupSizes = groupSizes,
 				NumberNegativePattern = negativePattern.TranslateNegativePattern(),
-			});
+			};
+
+			FormatInfo = isoCode == CurrencyIsoCode.ZZZ ? formatInfo : NumberFormatInfo.ReadOnly(formatInfo);
 		}
 
 		#endregion
@@ -299,6 +301,10 @@ namespace NMoneys
 		/// Testing currency
 		/// </summary>
 		public static readonly Currency Test;
+		/// <summary>
+		/// Currency with customizable format
+		/// </summary>
+		public static readonly Currency Zzz;
 
 		/*private static readonly ThreadSafeCache<string, Currency> _byIsoSymbol;
 		private static readonly ThreadSafeCache<CurrencyIsoCode, Currency> _byIsoCode;*/
@@ -384,6 +390,9 @@ namespace NMoneys
 
 				Xts = init(CurrencyIsoCode.XTS, initializer.Get);
 				_cache.Add(Xts);
+
+				Zzz = init(CurrencyIsoCode.ZZZ, initializer.Get);
+				_cache.Add(Zzz);
 			}
 
 			Euro = Eur;

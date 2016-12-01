@@ -931,6 +931,11 @@ namespace NMoneys
 		/// Zimbabwe Dollar
 		/// </summary>
 		[EnumMember, CanonicalCulture("en-ZW")]
-		ZWL = 932
+		ZWL = 932,
+		/// <summary>
+		/// Currency with customizable format
+		/// </summary>
+		[EnumMember]
+		ZZZ = 996
 	}
 }
