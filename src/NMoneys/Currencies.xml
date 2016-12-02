@@ -2052,4 +2052,16 @@
 		<positivePattern>0</positivePattern>
 		<negativePattern>0</negativePattern>
 	</currency>
+	<currency code="ZZZ">
+		<englishName>Customizable currency</englishName>
+		<nativeName>Customizable currency</nativeName>
+		<symbol></symbol>
+		<significantDecimalDigits>2</significantDecimalDigits>
+		<decimalSeparator>.</decimalSeparator>
+		<groupSeparator>,</groupSeparator>
+		<groupSizes>3</groupSizes>
+		<positivePattern>0</positivePattern>
+		<negativePattern>0</negativePattern>
+		<entity>curren</entity>
+	</currency>
 </currencies>
