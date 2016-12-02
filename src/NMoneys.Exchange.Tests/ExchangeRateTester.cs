@@ -189,8 +189,8 @@ namespace NMoneys.Exchange.Tests
 			Assert.That(parsed.Rate, Is.EqualTo(1.25m));
 		}
 
-		[TestCase("ZZZ/USD 1")]
-		[TestCase("USD/ZZZ 1")]
+		[TestCase("ZZY/USD 1")]
+		[TestCase("USD/ZZY 1")]
 		public void Parse_UndefinedCurrencies_Exception(string undefinedCurrency)
 		{
 			Assert.That(() => ExchangeRate.Parse(undefinedCurrency), Throws.InstanceOf<FormatException>());
