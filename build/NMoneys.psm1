@@ -147,7 +147,7 @@ function Sign-Assemblies($base, $configuration)
 	
 	ildasm $assembly /out:$il_file
 	Throw-If-Error "Could disassemble $assembly_file"
-	ilasm $il_file /dll /key=$base\NMoneys.key.snk /output=$signed_assembly /quiet /res=$res_file
+	ilasm $il_file /dll /key=$base\Pathfinder.snk /output=$signed_assembly /quiet /res=$res_file
 	Throw-If-Error "Could not assemble $il_file"
 }
 
